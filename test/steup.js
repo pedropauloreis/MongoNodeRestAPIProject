@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var mongod;
 
-before(async () => {
-
+before(async function () {
+    this.timeout(5000);
     mongod = await MongoMemoryServer.create();
     const mongoUri = mongod.getUri();
         

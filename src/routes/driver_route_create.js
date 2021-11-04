@@ -1,13 +1,14 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const Driver = require('../models/driver');
 const validateRequest = require('../middlewares/validate-request');
-const {body} = require('express-validator');
+const NotFoundError = require('../errors/not-found-error');
+const {body,param} = require('express-validator');
 
-const driverRouter = express.Router();
+const driverRouterCreate = express.Router();
 
-driverRouter.get('/api', async (req, res) => { await res.send({hi: 'there'})});
 
-driverRouter.post('/api/drivers',[
+driverRouterCreate.post('/api/drivers',[
     body('email')
             .not()
             .isEmpty()
@@ -23,4 +24,4 @@ driverRouter.post('/api/drivers',[
 
 });
 
-module.exports = driverRouter; 
+module.exports = driverRouterCreate; 
